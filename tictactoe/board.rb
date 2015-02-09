@@ -25,7 +25,9 @@ module TicTacToe
     end
 
     def place sym, location
-      @squares[location - 1] = sym
+      if @squares[location - 1].nil?
+        @squares[location - 1] = sym
+      end
     end
 
     def full?
