@@ -40,14 +40,28 @@ module TicTacToe
         [4,5,6],
         [7,8,9],
         [1,5,9],
-        [3,5,7]
+        [3,5,7],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9]
       ]
       lines.each do |line|
-        if line.all? { |square| value_at(square) == value_at(line.first) }
-          return value_at(line.first)
-        end
+        winner = check_line_for_winner line
+        return winner if [:x,:o].include?(winner)
       end
       return nil
+    end
+
+    def check_line_for_winner line
+      # if line.all? { |square| value_at(square) == value_at(line.first) }
+      #   unless value_at(line.first).nil?
+      #     return value_at(line.first)
+      #   end
+      # end
+      values = line.map { |location| value_at location }
+      if values.uniq.count == 1
+        return values.first
+      end
     end
   end
 end
